@@ -55,9 +55,11 @@ import ReduxCounter from 'components/redux';
 import Stats from 'components/stats';
 import Styles from 'components/styles';
 import css from './main.scss';
-import Header from './Header/header'
 import Home from './Home/home'
-import Login from './Login/login'
+import Register from './Register/register'
+import { Button } from 'semantic-ui-react'
+import Header from './Header/header'
+
 
 
 // Get the ReactQL logo.  This is a local .svg file, which will be made
@@ -69,9 +71,9 @@ import logo from './reactql-logo.svg';
 // Example function to show that the `history` object can be changed from
 // anywhere, simply by importing it-- use this in Redux actions, functions,
 // React `onClick` events, etc.
-// function changeRoute() {
-//   history.push('/page/about');
-// }
+function changeRoute() {
+  history.push('/page/about');
+}
 
 export default () => (
   <div>
@@ -80,17 +82,16 @@ export default () => (
       <meta name="description" content="ReactQL starter kit app" />
       {/* <base href="http://localhost:8081/" /> */}
     </Helmet>
-    <Header />
+    <Header/>
     <Switch>
-      <Route  path="/o_nama" component={Home} />
-      <Route  path="/izvlacenja" component={Home} />
-      <Route  path="/posalji_sms" component={Home} />
       <Route exact path="/" component={Home} />
-      <Route  path = "/login" component={Login} />
+      <Route  path = "/kreiraj_nalog" component={Register} />
+      <Route  path = "/posalji_sms" component={Home} />
+      <Route  path = "/izvlacenja" component={Home} />
+      <Route  path = "/o_nama" component={Home} />
       {/* <Route path="/page/:name" component={Page} /> */}
       <Redirect from="/old/path" to="/new/path" />
       <Route component={WhenNotFound} />
     </Switch>
-
   </div>
 );
