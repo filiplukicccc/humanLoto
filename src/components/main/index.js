@@ -54,10 +54,11 @@ import { WhenNotFound } from 'components/routes';
 import ReduxCounter from 'components/redux';
 import Stats from 'components/stats';
 import Styles from 'components/styles';
-import Home from './home'
-
-// Styles
 import css from './main.scss';
+import Home from './home'
+import { Button } from 'semantic-ui-react'
+
+
 
 // Get the ReactQL logo.  This is a local .svg file, which will be made
 // available as a string relative to [root]/dist/assets/img/
@@ -79,6 +80,7 @@ export default () => (
       <meta name="description" content="ReactQL starter kit app" />
       {/* <base href="http://localhost:8081/" /> */}
     </Helmet>
+  <Button>Click Here</Button>
     <Switch>
       <Route exact path="/" component={Home} />
       {/* <Route path="/page/:name" component={Page} /> */}
