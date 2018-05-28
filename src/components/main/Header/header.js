@@ -66,6 +66,13 @@ class Header extends Component {
         <Menu.Item
             // name='send_sms'
             // active={activeItem === 'send_sms'}
+            onClick={() => this.changeRoute("/kome_nagrada")}
+          >
+            Kome Ide Nagrada
+        </Menu.Item>
+        <Menu.Item
+            // name='send_sms'
+            // active={activeItem === 'send_sms'}
             onClick={() => this.changeRoute("/dobitnici")}
           >
             Dobitnici

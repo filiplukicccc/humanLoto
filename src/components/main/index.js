@@ -64,6 +64,8 @@ import Extraction from './Extraction/izvlacenja'
 import SendSMS from './SendSMS/sendSMS'
 import Award from './Award/award'
 import Winners from './Winners/winners'
+import WhichAward from './WhichAward/whichAward'
+
 
 
 // Get the ReactQL logo.  This is a local .svg file, which will be made
@@ -95,6 +97,7 @@ export default () => (
       <Route  path = "/o_nama" component={AboutUs} />
       <Route  path = "/nagrada" component={Award} />
       <Route  path = "/dobitnici" component={Winners} />
+      <Route  path = "/kome_nagrada" component={WhichAward} />
       {/* <Route path="/page/:name" component={Page} /> */}
       <Redirect from="/old/path" to="/new/path" />
       <Route component={WhenNotFound} />
