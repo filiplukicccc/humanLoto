@@ -59,7 +59,12 @@ import Home from './Home/home'
 import Register from './Register/register'
 import { Button } from 'semantic-ui-react'
 import Header from './Header/header'
+import AboutUs from './AboutUs/o_nama'
+import Extraction from './Extraction/izvlacenja'
+import SendSMS from './SendSMS/sendSMS'
 import Award from './Award/award'
+import Winners from './Winners/winners'
+import WhichAward from './WhichAward/whichAward'
 
 
 
@@ -87,10 +92,12 @@ export default () => (
     <Switch>
       <Route exact path="/" component={Home} />
       <Route  path = "/kreiraj_nalog" component={Register} />
-      <Route  path = "/posalji_sms" component={Home} />
-      <Route  path = "/izvlacenja" component={Home} />
-      <Route  path = "/o_nama" component={Home} />
-      <Route  path = "/kome_nagrada" component={Award} />
+      <Route  path = "/posalji_sms" component={SendSMS} />
+      <Route  path = "/izvlacenja" component={Extraction} />
+      <Route  path = "/o_nama" component={AboutUs} />
+      <Route  path = "/nagrada" component={Award} />
+      <Route  path = "/dobitnici" component={Winners} />
+      <Route  path = "/kome_nagrada" component={WhichAward} />
       {/* <Route path="/page/:name" component={Page} /> */}
       <Redirect from="/old/path" to="/new/path" />
       <Route component={WhenNotFound} />

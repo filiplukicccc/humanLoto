@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-class Award extends Component {
+class Extraction extends Component {
   render() {
     return (
       <div>
-        <h1>Nagrada</h1>
+        <h1>Izvlacenja</h1>
       </div>
     )
   }
 }
-export default Award;
+export default Extraction;
