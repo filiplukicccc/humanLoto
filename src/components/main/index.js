@@ -54,9 +54,8 @@ import { WhenNotFound } from 'components/routes';
 import ReduxCounter from 'components/redux';
 import Stats from 'components/stats';
 import Styles from 'components/styles';
-import App from './app'
-import Header from './app'
 import Home from './home'
+import Header from './header'
 
 // Styles
 import css from './main.scss';
@@ -81,7 +80,6 @@ export default () => (
       <meta name="description" content="ReactQL starter kit app" />
       {/* <base href="http://localhost:8081/" /> */}
     </Helmet>
-    <Home />
     <Header />
     <Switch>
       <Route exact path="/" component={Home} />
