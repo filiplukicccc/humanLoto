@@ -54,11 +54,11 @@ import { WhenNotFound } from 'components/routes';
 import ReduxCounter from 'components/redux';
 import Stats from 'components/stats';
 import Styles from 'components/styles';
+import css from './main.scss';
 import Home from './home'
 import Header from './header'
 
-// Styles
-import css from './main.scss';
+
 
 // Get the ReactQL logo.  This is a local .svg file, which will be made
 // available as a string relative to [root]/dist/assets/img/
@@ -69,9 +69,9 @@ import logo from './reactql-logo.svg';
 // Example function to show that the `history` object can be changed from
 // anywhere, simply by importing it-- use this in Redux actions, functions,
 // React `onClick` events, etc.
-function changeRoute() {
-  history.push('/page/about');
-}
+// function changeRoute() {
+//   history.push('/page/about');
+// }
 
 export default () => (
   <div>
@@ -83,6 +83,9 @@ export default () => (
     <Header />
     <Switch>
       <Route exact path="/" component={Home} />
+      <Route  path="/o_nama" component={Home} />
+      <Route  path="/izvlacenja" component={Home} />
+      <Route  path="/posalji_sms" component={Home} />
       {/* <Route path="/page/:name" component={Page} /> */}
       <Redirect from="/old/path" to="/new/path" />
       <Route component={WhenNotFound} />
