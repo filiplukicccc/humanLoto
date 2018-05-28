@@ -54,6 +54,7 @@ import { Home, Page, WhenNotFound } from 'components/routes';
 import ReduxCounter from 'components/redux';
 import Stats from 'components/stats';
 import Styles from 'components/styles';
+import App from './app'
 
 // Styles
 import css from './main.scss';
@@ -74,37 +75,17 @@ function changeRoute() {
 export default () => (
   <div>
     <Helmet>
-      <title>ReactQL application</title>
+      <title>HumanLoto</title>
       <meta name="description" content="ReactQL starter kit app" />
       {/* <base href="http://localhost:8081/" /> */}
     </Helmet>
-    <div className={css.hello}>
-      <img src={logo} alt="ReactQL" className={css.logo} />
-    </div>
-    <hr />
-    <GraphQLMessage />
-    <hr />
-    <ul>
-      <li><Link to="/">Home</Link></li>
-      <li><Link to="/page/about">About</Link></li>
-      <li><Link to="/page/contact">Contact</Link></li>
-      <li><Link to="/old/path">Redirect from /old/path &#8594; /new/path</Link></li>
-    </ul>
-    Change routes anywhere &mdash; <button onClick={changeRoute}>Like here (About)</button>
-    <hr />
+    <Home/>
     <Switch>
-      <Route exact path="/" component={Home} />
+      <Route exact path="/" component={App} />
       <Route path="/page/:name" component={Page} />
       <Redirect from="/old/path" to="/new/path" />
       <Route component={WhenNotFound} />
     </Switch>
-    <hr />
-    <ReduxCounter />
-    <hr />
-    <p>Runtime info:</p>
-    <Stats />
-    <hr />
-    <p>Stylesheet examples:</p>
-    <Styles />
+    
   </div>
 );
