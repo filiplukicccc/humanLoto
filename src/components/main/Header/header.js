@@ -20,6 +20,13 @@ class Header extends Component {
     return (
       <div>
         <Menu>
+        <Menu.Item
+            // name='about_us'
+            // active={activeItem === 'about_us'}
+            onClick={() => this.changeRoute('/')}
+          >
+            Pocetna
+        </Menu.Item>
           <Menu.Item
             // name='about_us'
             // active={activeItem === 'about_us'}
@@ -48,6 +55,20 @@ class Header extends Component {
             onClick={() => this.changeRoute("/kreiraj_nalog")}
           >
             Kreiraj nalog
+        </Menu.Item>
+        <Menu.Item
+            // name='send_sms'
+            // active={activeItem === 'send_sms'}
+            onClick={() => this.changeRoute("/nagrada")}
+          >
+            Nagrada
+        </Menu.Item>
+        <Menu.Item
+            // name='send_sms'
+            // active={activeItem === 'send_sms'}
+            onClick={() => this.changeRoute("/dobitnici")}
+          >
+            Dobitnici
         </Menu.Item>
         </Menu>
       </div>
