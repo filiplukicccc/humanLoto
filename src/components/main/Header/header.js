@@ -35,13 +35,19 @@ class Header extends Component {
           >
             Izvlacenja
         </Menu.Item>
-
-          <Menu.Item
+        <Menu.Item
             // name='send_sms'
             // active={activeItem === 'send_sms'}
             onClick={() => this.changeRoute("/posalji_sms")}
           >
             Posalji SMS
+        </Menu.Item>
+          <Menu.Item
+            // name='send_sms'
+            // active={activeItem === 'send_sms'}
+            onClick={() => this.changeRoute("/kreiraj_nalog")}
+          >
+            Kreiraj nalog
         </Menu.Item>
         </Menu>
       </div>
