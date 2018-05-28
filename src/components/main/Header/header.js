@@ -49,6 +49,13 @@ class Header extends Component {
           >
             Kreiraj nalog
         </Menu.Item>
+        <Menu.Item
+            // name='send_sms'
+            // active={activeItem === 'send_sms'}
+            onClick={() => this.changeRoute("/kome_nagrada")}
+          >
+            Kome ide nagrada
+        </Menu.Item>
         </Menu>
       </div>
     )

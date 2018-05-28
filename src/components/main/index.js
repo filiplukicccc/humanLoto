@@ -59,6 +59,7 @@ import Home from './Home/home'
 import Register from './Register/register'
 import { Button } from 'semantic-ui-react'
 import Header from './Header/header'
+import Award from './Award/award'
 
 
 
@@ -89,6 +90,7 @@ export default () => (
       <Route  path = "/posalji_sms" component={Home} />
       <Route  path = "/izvlacenja" component={Home} />
       <Route  path = "/o_nama" component={Home} />
+      <Route  path = "/kome_nagrada" component={Award} />
       {/* <Route path="/page/:name" component={Page} /> */}
       <Redirect from="/old/path" to="/new/path" />
       <Route component={WhenNotFound} />

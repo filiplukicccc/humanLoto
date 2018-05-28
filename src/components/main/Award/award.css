@@ -1,0 +1,12 @@
+.awardList {
+  padding:40px 60px !important;
+}
+.awardDiv{
+ margin-top:40px !important;
+}
+.voteDiv{
+  padding:20px !important;
+  position:fixed !important;
+  top:100px !important;
+  right:70px !important;
+}

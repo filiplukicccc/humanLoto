@@ -9,7 +9,20 @@ import css from './register.css'
 
 
 class Register extends Component {
+    constructor(props){
+        super(props);
+          this.state = {
+            // name:"",
+            // lastName:"",
+            // phone:"",
+            // address:"",
+            // city:""
+          }
+    }
+    handleChange = (e, { name, value }) => this.setState({ [name]: value })
+    // handleSubmit = () => this.setState({ email: '', name: '' })
     render() {
+      console.log("STATE",this.state)
         return (
             <div>
                 <h1 className={css.loginHeader}>Kreirajte Vas nalog</h1>
@@ -17,13 +30,13 @@ class Register extends Component {
 
                     <Form>
                         <Form.Group widths='equal'>
-                            <Form.Input fluid label='Ime' placeholder='Ime' />
-                            <Form.Input fluid label='Prezime' placeholder='Prezime' />
+                            <Form.Input fluid name="name" label='Ime' placeholder='Ime' onChange={this.handleChange} />
+                            <Form.Input fluid name="lastName" label='Prezime' placeholder='Prezime' onChange={this.handleChange} />
                         </Form.Group>
                         <Form.Group widths='equal'>
-                            <Form.Input fluid label='Broj telefona' placeholder='Telefon' />
-                            <Form.Input fluid label='Adresa' placeholder='Ulica i broj' />
-                            <Form.Input fluid label='Grad' placeholder='Grad' />
+                            <Form.Input fluid name = "phone" label='Broj telefona' placeholder='Telefon' onChange={this.handleChange} />
+                            <Form.Input fluid name = "address" label='Adresa' placeholder='Ulica i broj' onChange={this.handleChange}/>
+                            <Form.Input fluid name = "city" label='Grad' placeholder='Grad' onChange={this.handleChange} />
                         </Form.Group>
                         <Form.Button>Submit</Form.Button>
                     </Form>
