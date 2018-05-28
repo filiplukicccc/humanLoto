@@ -5,11 +5,11 @@ import {
   Switch,
 } from 'react-router-dom';
 
-class App extends Component {
+class Home extends Component {
   render() {
     return (
     <h1>Heloo</h1>
     )
   }
 }
-export default App;
+export default Home;
