@@ -55,9 +55,9 @@ import ReduxCounter from 'components/redux';
 import Stats from 'components/stats';
 import Styles from 'components/styles';
 import css from './main.scss';
-import Home from './home'
-import Header from './header'
-
+import Header from './Header/header'
+import Home from './Home/home'
+import Login from './Login/login'
 
 
 // Get the ReactQL logo.  This is a local .svg file, which will be made
@@ -82,10 +82,11 @@ export default () => (
     </Helmet>
     <Header />
     <Switch>
-      <Route exact path="/" component={Home} />
       <Route  path="/o_nama" component={Home} />
       <Route  path="/izvlacenja" component={Home} />
       <Route  path="/posalji_sms" component={Home} />
+      <Route exact path="/" component={Home} />
+      <Route  path = "/login" component={Login} />
       {/* <Route path="/page/:name" component={Page} /> */}
       <Redirect from="/old/path" to="/new/path" />
       <Route component={WhenNotFound} />
