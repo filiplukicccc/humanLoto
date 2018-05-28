@@ -8,7 +8,7 @@ import {
 class Home extends Component {
   render() {
     return (
-    <h1>Heloo</h1>
+    <h1>HumaLoto home page</h1>
     )
   }
 }
