@@ -1,0 +1,26 @@
+.linksDiv p {
+    color:grey;
+    line-height:8px;
+}
+.main {
+    background-color: #f2f4f7 !important;
+    border-top:1px solid #9bbdf2 !important;
+    margin-top:50px;
+}
+.sponsorRow {
+    background-color: #f2f4f7 !important;
+    /* border-top:1px solid #9bbdf2 !important; */
+    border-bottom:1px solid #9bbdf2 !important;
+  }
+.sponsorDiv {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.footerHeadline {
+    margin-bottom: 20px;
+}
+.sponsorImg {
+    width:150px;
+    height:100px;
+}
