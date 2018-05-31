@@ -65,6 +65,7 @@ import SendSMS from './SendSMS/sendSMS'
 import Award from './Award/award'
 import Winners from './Winners/winners'
 import WhichAward from './WhichAward/whichAward'
+import Footer from './Footer/footer'
 
 
 
@@ -102,5 +103,6 @@ export default () => (
       <Redirect from="/old/path" to="/new/path" />
       <Route component={WhenNotFound} />
     </Switch>
+    <Footer/>
   </div>
 );
