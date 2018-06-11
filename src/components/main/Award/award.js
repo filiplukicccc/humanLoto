@@ -7,6 +7,8 @@ import {
 import { Container, Divider, Button, Grid, Input, TextArea } from 'semantic-ui-react'
 import { Icon, Image as ImageComponent, Item } from 'semantic-ui-react'
 import css from './award.css'
+import { connect } from 'react-redux';
+import TokenHoc from '../../hoc/TokenHoc';
 
 const paragraph = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Curabitur ullamcorper ultricies nisi."
 let niz = [
@@ -31,7 +33,8 @@ let niz = [
     glasova: 112
   }
 ]
-
+@connect(state => ({ token: state.token }))
+@TokenHoc
 class Award extends Component {
   constructor(props) {
     super(props);
@@ -40,6 +43,7 @@ class Award extends Component {
       awardDesc: '',
       game_id: 1,
       gamesAdd: [],
+      error: ''
     }
   }
   addGame = (e) => {
@@ -48,25 +52,30 @@ class Award extends Component {
     })
   }
   addAward = (id, name, desc) => {
-    let gamesAdded = this.state.gamesAdd
-    gamesAdded.push({
-      _id: id,
-      nameAward: name,
-      descriptionAward: desc,
-      glasova: 0
-    })
-    this.setState({
-      game_id: id + 1,
-      gamesAdd: gamesAdded
+    if (this.props.token.token) {
+      let gamesAdded = this.state.gamesAdd
+      gamesAdded.push({
+        _id: id,
+        nameAward: name,
+        descriptionAward: desc,
+        glasova: 0
+      })
+      this.setState({
+        game_id: id + 1,
+        gamesAdd: gamesAdded
+      })
+    } else this.setState({
+      error: 'Niste ulogovani'
     })
   }
   count = (vote) => {
     let votes = vote + 1;
-    console.log('vote',votes)
+    console.log('vote', votes)
   }
   render() {
     let { gamesAdd } = this.state;
-    console.log(this.state)
+    console.log('tokenAward', this.props.token)
+    console.log('state', this.state)
     return (
       <div>
         <Grid>
@@ -114,6 +123,7 @@ class Award extends Component {
                         )
                       })
                     }
+                    <span style={{ color: 'red', fontSize: '20px' }}>{this.state.error}</span>
                     {niz.map((item => {
                       return (
                         <div>
