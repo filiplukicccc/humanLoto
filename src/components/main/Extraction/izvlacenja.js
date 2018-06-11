@@ -57,7 +57,6 @@ class Extraction extends Component {
               </Item.Group>
             </Grid.Column>
           </Grid.Row>
-
         </Grid>
       </div>
     )
