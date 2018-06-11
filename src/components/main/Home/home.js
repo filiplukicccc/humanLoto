@@ -4,6 +4,8 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
+import { connect } from 'react-redux'
+import TokenHoc from '../../hoc/TokenHoc';
 import ItemDescription, { Container, Divider, Button, Grid } from 'semantic-ui-react'
 import { Icon, Image as ImageComponent, Item } from 'semantic-ui-react'
 import css from './home.css'
