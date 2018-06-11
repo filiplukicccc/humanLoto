@@ -8,35 +8,71 @@ import {
   GraphQLObjectType,
   GraphQLString,
   GraphQLSchema,
+  GraphQLNonNull
 } from 'graphql';
+import UserSchema from './schema/user';
+import UserLogin from '../controll/user/login';
+import gLogin from '../controll/user/gLogin';
+import fbLogin from '../controll/user/fbLogin';
+
 
 // ----------------------
 
 // GraphQL can handle Promises from its `resolve()` calls, so we'll create a
 // simple async function that returns a simple message.  In practice, `resolve()`
 // will generally pull from a 'real' data source such as a database
-async function getMessage() {
-  return {
-    text: `Hello from the GraphQL server @ ${new Date()}`,
-  };
-}
+console.log("UserSchema", UserSchema.User)
 
 // Message type.  Imagine this like static type hinting on the 'message'
 // object we're going to throw back to the user
-const Message = new GraphQLObjectType({
-  name: 'Message',
-  description: 'GraphQL server message',
+const Mutation = new GraphQLObjectType({
+  name: 'Mutation',
   fields() {
     return {
-      text: {
-        type: GraphQLString,
-        resolve(msg) {
-          return msg.text;
+      // USER LOGIN
+      user_login: {
+        type: UserSchema.User,
+        args: {
+          username: {
+            type: new GraphQLNonNull(GraphQLString)
+          },
+          password: {
+            type: new GraphQLNonNull(GraphQLString)
+          },
         },
+        resolve(root, args) {
+          return UserLogin(args)
+        }
+      },
+      // GOOGLE LOGIN
+      user_gLogin: {
+        type: UserSchema.User,
+        args: {
+          gToken: {
+            type: new GraphQLNonNull(GraphQLString)
+          },
+        },
+        async resolve(root, args) {
+          const nesto = await gLogin(args)
+          return nesto
+        }
+      },
+      // FACEBOOK LOGIN
+      user_fbLogin: {
+        type: UserSchema.User,
+        args: {
+          fbToken: {
+            type: new GraphQLNonNull(GraphQLString)
+          },
+        },
+        async resolve(root, args) {
+          const nesto = await fbLogin(args)
+          return nesto
+        }
       },
     };
-  },
-});
+  }
+})
 
 // Root query.  This is our 'public API'.
 const Query = new GraphQLObjectType({
@@ -45,9 +81,9 @@ const Query = new GraphQLObjectType({
   fields() {
     return {
       message: {
-        type: Message,
+        type: GraphQLString,
         resolve() {
-          return getMessage();
+          return 'sss';
         },
       },
     };
@@ -59,4 +95,5 @@ const Query = new GraphQLObjectType({
 // if we want to pass mutation queries that have side-effects (e.g. like HTTP POST)
 export default new GraphQLSchema({
   query: Query,
+  mutation: Mutation
 });
