@@ -7,6 +7,8 @@ import {
 import { Container, Divider, Button, Grid, Input, TextArea } from 'semantic-ui-react'
 import { Icon, Image as ImageComponent, Item } from 'semantic-ui-react'
 import css from './award.css'
+import { connect } from 'react-redux';
+import TokenHoc from '../../hoc/TokenHoc';
 
 const paragraph = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Curabitur ullamcorper ultricies nisi."
 let niz = [
@@ -24,16 +26,24 @@ let niz = [
     name: 'Rucak sa Slobom',
     tekst: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa strong. Cum sociis natoque penatibus et magnis dis parturient montes.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa strong. Cum sociis natoque penatibus et magnis dis parturient montes',
     glasova: 146
+  },
+  {
+    name: 'Rucak sa Slobom',
+    tekst: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa strong. Cum sociis natoque penatibus et magnis dis parturient montes.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa strong. Cum sociis natoque penatibus et magnis dis parturient montes',
+    glasova: 112
   }
 ]
-
+@connect(state => ({ token: state.token }))
+@TokenHoc
 class Award extends Component {
   constructor(props) {
     super(props);
     this.state = {
       awardName: '',
       awardDesc: '',
+      game_id: 1,
       gamesAdd: [],
+      error: ''
     }
   }
   addGame = (e) => {
@@ -41,23 +51,31 @@ class Award extends Component {
       [e.target.name]: e.target.value
     })
   }
-  addAward = (name, desc) => {
-    let gamesAdded = this.state.gamesAdd
-    gamesAdded.push({
-      nameAward: name,
-      descriptionAward: desc,
-    })
-    this.setState({
-      gamesAdd: gamesAdded
+  addAward = (id, name, desc) => {
+    if (this.props.token.token) {
+      let gamesAdded = this.state.gamesAdd
+      gamesAdded.push({
+        _id: id,
+        nameAward: name,
+        descriptionAward: desc,
+        glasova: 0
+      })
+      this.setState({
+        game_id: id + 1,
+        gamesAdd: gamesAdded
+      })
+    } else this.setState({
+      error: 'Niste ulogovani'
     })
   }
   count = (vote) => {
     let votes = vote + 1;
-    console.log('vote',votes)
+    console.log('vote', votes)
   }
   render() {
     let { gamesAdd } = this.state;
-    console.log(this.state)
+    console.log('tokenAward', this.props.token)
+    console.log('state', this.state)
     return (
       <div>
         <Grid>
@@ -87,7 +105,7 @@ class Award extends Component {
               <h2>Predlozite nagradu</h2>
               <span>Naziv nagrade: </span><Input name='awardName' value={this.state.awardName} onChange={this.addGame} /><br />
               <span>Opis nagrade: </span><TextArea name='awardDesc' value={this.state.awardDesc} onChange={this.addGame} autoHeight />
-              <Button circular onClick={() => this.addAward(this.state.awardName, this.state.awardDesc)}>+</Button>
+              <Button circular onClick={() => this.addAward(this.state.game_id, this.state.awardName, this.state.awardDesc)}>+</Button>
               <Item.Group>
                 <Item>
                   <Item.Content>
@@ -98,13 +116,14 @@ class Award extends Component {
                             <Item.Header as='a'>{item.nameAward}</Item.Header>
                             <Item.Description>{item.descriptionAward}</Item.Description>
                             <Item.Extra>
-                              <Icon color='green' name='check' />Glasova: 
-                              <Button floated='right'>Glasaj</Button>
+                              <Icon color='green' name='check' />Glasova: {item.glasova}
+                              <Button floated='right' onClick={() => this.count(item.glasova)}>Glasaj</Button>
                             </Item.Extra>
                           </div>
                         )
                       })
                     }
+                    <span style={{ color: 'red', fontSize: '20px' }}>{this.state.error}</span>
                     {niz.map((item => {
                       return (
                         <div>

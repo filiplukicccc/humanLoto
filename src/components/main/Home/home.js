@@ -14,6 +14,9 @@ let arr = [
 let numbers = [23, 2, 23, 4, 5, 12, 32]
 let numbers1 = [0, 0, 0, 0, 0, 0, 0]
 
+@connect(state => ({ token: state.token }))
+@TokenHoc
+
 class Home extends Component {
   constructor() {
     super();
@@ -48,11 +51,24 @@ class Home extends Component {
 
   componentWillMount() {
    this.countDown();
+   if(this.props.token.token != "") {
+    {token: this.props.token.token}
+ }
+ window.addEventListener('storage', this.checkIfTabIsActive)
   }
   countDown =()=> {
     this.setState({ interval:setInterval(this.secondsToTime, 1000)})
   }
 
+ checkIfTabIsActive = () => {
+    if(window.localStorage.getItem('info') == null) {
+      this.props.dispatch({
+        type: 'ADD_TOKEN',
+        token: '',
+        username: ''
+      })
+    }
+  }
   render() {
     console.log("STATE",this.state)
     let number = numbers.map(item => {
