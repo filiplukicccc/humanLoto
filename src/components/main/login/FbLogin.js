@@ -31,8 +31,8 @@ class FbLogin extends Component {
 				fbToken
 			}
 		})
-		const {user_fbLogin} = response.data || {}
-		if(user_fbLogin.token != null) {
+		const { user_fbLogin } = response.data || {}
+		if (user_fbLogin.token != null) {
 			this.props.dispatch({
 				type: "ADD_TOKEN",
 				token: user_fbLogin.token,
