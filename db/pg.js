@@ -1,6 +1,7 @@
 import Sequelize from 'sequelize';
 
-const pg = new Sequelize('postgres://cybele:Mfgdjz@x12308@cybeletechnologies.ml/cryptster_prod');
+const pg = new Sequelize('postgres://cybele:20jebotevps18@localhost/cryptster_prod');
+
 
 const User = pg.define('User', {
 	username: {
@@ -38,5 +39,23 @@ const User = pg.define('User', {
 		type: Sequelize.BOOLEAN
 	}
 })
+
+const ResetPassword = pg.define('ResetPassword', {
+	hash: {
+		type: Sequelize.STRING,
+		unique: true,
+	},
+	emailHash: {
+		type: Sequelize.STRING,
+	},
+	time: {
+		type: Sequelize.INTEGER,
+	},
+	isUsed: {
+		type: Sequelize.BOOLEAN,
+	}
+})
+
+
 
 export default pg

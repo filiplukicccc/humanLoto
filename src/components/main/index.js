@@ -66,6 +66,7 @@ import Award from './Award/award'
 import Winners from './Winners/winners'
 import WhichAward from './WhichAward/whichAward'
 import Footer from './Footer/footer'
+import ForgotPassword from './login/ResetPassword'
 
 
 
@@ -99,6 +100,7 @@ export default () => (
       <Route  path = "/nagrada" component={Award} />
       <Route  path = "/dobitnici" component={Winners} />
       <Route  path = "/kome_nagrada" component={WhichAward} />
+      <Route  path = "/resetuj_sifru" component={ForgotPassword} />
       {/* <Route path="/page/:name" component={Page} /> */}
       <Redirect from="/old/path" to="/new/path" />
       <Route component={WhenNotFound} />

@@ -8,12 +8,15 @@ import {
   GraphQLObjectType,
   GraphQLString,
   GraphQLSchema,
-  GraphQLNonNull
+  GraphQLNonNull,
+  GraphQLBoolean
 } from 'graphql';
 import UserSchema from './schema/user';
 import UserLogin from '../controll/user/login';
 import gLogin from '../controll/user/gLogin';
 import fbLogin from '../controll/user/fbLogin';
+import Passwords from '../controll/user/passwords';
+
 
 
 // ----------------------
@@ -70,7 +73,39 @@ const Mutation = new GraphQLObjectType({
           return nesto
         }
       },
+      // ZAHTEV ZA RESET 
+      user_resetPassword: {
+        type: BasicResponse,
+        args: {
+          email: {
+            type: new GraphQLNonNull(GraphQLString)
+          }
+        },
+        resolve(root, args) {
+          return Passwords.resetPassword(args);
+        }
+      },
     };
+  }
+})
+
+const BasicResponse = new GraphQLObjectType({
+  name: 'BasicResponse',
+  fields() {
+    return {
+      success: {
+        type: GraphQLBoolean,
+        resolve(root) {
+          return root.success
+        }
+      },
+      error: {
+        type: GraphQLString,
+        resolve(root) {
+          return root.error
+        }
+      }
+    }
   }
 })
 

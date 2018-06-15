@@ -98,6 +98,7 @@
     "koa-send": "^4.1.1",
     "koa-sslify": "^2.1.2",
     "microseconds": "^0.1.0",
+    "nodemailer": "^4.6.6",
     "pg": "^7.4.3",
     "pg-hstore": "^2.3.2",
     "prop-types": "^15.6.0",

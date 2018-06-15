@@ -4,6 +4,7 @@ import {
   Input,
   Modal
 } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import css from './loginUser.css';
 import gql from "graphql-tag";
 import { graphql } from "react-apollo";
@@ -13,6 +14,8 @@ import LogOut from '../login/LogOut'
 import TokenHoc from '../../hoc/TokenHoc';
 import GLogin from '../login/GoogleLogin';
 import FbLogin from '../login/FbLogin';
+import { Redirect, history } from 'kit/lib/routing';
+
 
 @graphql(
   gql`
@@ -69,6 +72,9 @@ class LoginUser extends Component {
   }
   show = size => () => this.setState({ size, open: true })
   close = (e) => this.setState({ open: false })
+  changeRoute = (url) => {
+    history.push(url);
+  }
   render() {
     const { open, size } = this.state;
     return (
@@ -83,9 +89,12 @@ class LoginUser extends Component {
           </Modal.Header>
           <Input name='username' value={this.state.username} onChange={this.change} icon='users' iconPosition='left' placeholder='Username...' />< br />
           <Input name='password' value={this.state.password} onChange={this.change} icon='lock' iconPosition='left' placeholder='Password...' /><br />
-          <Button onClick={this.logInUser} >Login</Button>
+          <Button onClick={this.logInUser}>Login</Button>
           <GLogin />
           <FbLogin />
+          <Link onClick={this.close} to='/resetuj_sifru'>
+            Forgot pass
+          </Link>
         </Modal>
       </div>
     )
